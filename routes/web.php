@@ -40,13 +40,16 @@ Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\F
 // cards
 Route::get('/cards/basic', $controller_path . '\cards\CardBasic@index')->name('cards-basic');
 
-// Menus
+// !Menus
 Route::get('/menus/all', $controller_path . '\Menu\All@index')->name('menuu-all');
 Route::get('/menus/barbecue', $controller_path . '\Menu\Barbecue@index')->name('menuu-barbecue');
 Route::get('/menus/side_dishes', $controller_path . '\Menu\Side_dishes@index')->name('menuu-side-dishes');
 Route::get('/menus/drinks', $controller_path . '\Menu\Drinks@index')->name('menuu-drinks');
 Route::get('/menus/desserts', $controller_path . '\Menu\Desserts@index')->name('menuu-desserts');
 Route::get('/menus/ticoysbar', $controller_path . '\Menu\Ticoysbar@index')->name('menuu-ticoysbar');
+
+// !HOTEL
+Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->name('hotel');
 
 // User Interface
 Route::get('/ui/accordion', $controller_path . '\user_interface\Accordion@index')->name('ui-accordion');

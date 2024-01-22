@@ -66,7 +66,12 @@
         @isset($menu->icon)
         <i class="{{ $menu->icon }}"></i>
         @endisset
-        <div>{{ isset($menu->name) ? __($menu->name) : '' }}</div>
+        <div>{{ isset($menu->name) ? __($menu->name) : '' }}
+          {{-- ! Badge --}}
+          @if (__($menu->name) === 'Hotel Service')
+          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">4</span>
+          @endif
+        </div>
       </a>
 
       {{-- submenu --}}

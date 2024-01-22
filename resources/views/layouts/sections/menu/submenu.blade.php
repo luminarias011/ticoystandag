@@ -32,7 +32,9 @@
       @if (isset($submenu->icon))
       <i class="{{ $submenu->icon }}"></i>
       @endif
-      <div>{{ isset($submenu->name) ? __($submenu->name) : '' }}</div>
+      <div>{{ isset($submenu->name) ? __($submenu->name) : '' }}
+      {{-- ! badge HERE --}}
+      </div>
     </a>
 
     {{-- submenu --}}

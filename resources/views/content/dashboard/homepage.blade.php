@@ -30,7 +30,7 @@ Contents here lol
 <div class="row">
   <div class="left">
     {{-- ? --}}
-    <div class="col-lg-12 mb-3 order-0">
+    {{-- <div class="col-lg-12 mb-3 order-0">
       <div class="card">
         <div class="d-flex align-items-end row">
           <div class="col-sm-7">
@@ -73,10 +73,10 @@ Contents here lol
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
   </div>
   <div class="right">
-    aslkcnaslknaslkv
+    content
   </div>
 </div>
 

@@ -53,6 +53,15 @@
       "slug": ""
     },
     {
+      "menuHeader": "Hotel"
+    },
+    {
+      "url": "/hotel/main",
+      "name": "Hotel Service",
+      "icon": "menu-icon tf-icons bx bx-hotel",
+      "slug": "hotel"
+    },
+    {
       "menuHeader": "Cakes and pastries"
     },
     {
