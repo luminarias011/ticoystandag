@@ -29,7 +29,8 @@
                 <div class="card-footer mb-n1 d-flex">
                     @if ($occupied->htO_amount_paid === $occupied->htO_total_price)
                     {{-- ? POPOVER --> --}}
-                    <button type="button" class="btn rounded-pill btn-success mb-2 mx-auto ms-1 text-nowrap" >Checkout</button>
+                    <button type="button" class="btn rounded-pill btn-success mb-2 mx-auto ms-1 text-nowrap" data-bs-toggle="modal"
+                        data-bs-target="#checkoutModal-{{ $occupied->htO_id }}">Check-Out</button>
                     {{-- <button type="button" class="btn rounded-pill btn-success mb-2 mx-auto ms-1 text-nowrap"
                         data-bs-toggle="popover" data-bs-offset="0,14" data-bs-placement="top" data-bs-html="true"
                         data-bs-content="
@@ -38,11 +39,12 @@
                             <button type='button' class='btn btn-sm btn-outline-secondary' id='cancelButton'>Cancel</button>
                             <button type='button' class='btn btn-sm btn-primary'>Checkout</button>
                         </div>" id="popOverComplete">Checkout</button> --}}
-                        {{-- ? POPOVER --> --}}
+                        {{-- ? ** END POPOVER --> --}}
                     @else
                     <button type="button" class="btn rounded-pill btn-info mb-2 mx-auto me-1" data-bs-toggle="modal"
                         data-bs-target="#addPaymentModal-{{ $occupied->htO_id }}">Add Payment</button>
-                    <button type="button" class="btn rounded-pill btn-dark mb-2 mx-auto ms-1">Cancel Booking</button>
+                    <button type="button" class="btn rounded-pill btn-dark mb-2 mx-auto ms-1" data-bs-toggle="modal"
+                        data-bs-target="#cancelBookingModal-{{ $occupied->htO_id }}">Cancel Booking</button>
                     @endif
                 </div>
             </div>
@@ -93,7 +95,7 @@
                 </div>
             </div>
             {{-- ? Modal CHECKOUT --> --}}
-            <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="checkoutModal-{{ $occupied->htO_id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -102,10 +104,30 @@
                         </div>
                         <div class="modal-body">
                             <p>Complete Booking? this will make the room available for the next check-in</p>
+                            {{-- <input type="text" value="{{ $occupied->htO_ht_id }}" name="ht_id" hidden> --}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Checkout</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='{{ route('checkout', [$occupied->htO_id, $occupied->htO_ht_id]) }}'">Check-Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- ? Modal CANCEL BOOKING --> --}}
+            <div class="modal fade" id="cancelBookingModal-{{ $occupied->htO_id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel2">Confirm Cancellation</h5>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                        </div>
+                        <div class="modal-body">
+                            <p>Continue to cancel? Payment will not be refundable.</p>
+                            <p>This will make the room available for the next check-in</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='{{ route('cancelCheckIn', [$occupied->htO_id, $occupied->htO_ht_id]) }}'">Cancel Booking</button>
                         </div>
                     </div>
                 </div>

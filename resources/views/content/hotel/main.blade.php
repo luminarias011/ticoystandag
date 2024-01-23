@@ -34,7 +34,7 @@
                 <li class="nav-item">
                     <button type="button" class="nav-link btn-sm" role="tab" data-bs-toggle="tab"
                         data-bs-target="#room-occupied" aria-controls="room-occupied" aria-selected="false"><i
-                            class="tf-icons bx bx-pin mt-n1"></i> Profile
+                            class="tf-icons bx bx-pin mt-n1"></i> Occupied
                         @if (bookedRooms() !== 0)
                         <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">{{ bookedRooms()
                             }}</span>
@@ -43,7 +43,7 @@
                 </li>
                 <li class="nav-item">
                     <button type="button" class="nav-link btn-sm" role="tab" data-bs-toggle="tab"
-                        data-bs-target="#navs-pills-justified-home" aria-controls="navs-pills-justified-messages"
+                        data-bs-target="#booking-history" aria-controls="booking-history"
                         aria-selected="false"><i class="tf-icons bx bx-history mt-n1"></i> History
                     </button>
                 </li>

@@ -55,6 +55,9 @@ Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->nam
 // POST
 Route::post('/hotel/addOccupant', $controller_path . '\Hotel\HotelController@addOccupant')->name('addOccupant');
 Route::post('/hotel/addPayment', $controller_path . '\Hotel\HotelController@addPayment')->name('addPayment');
+// BUTTONS
+Route::get('/hotel/checkout/{htO_id}/{ht_id}', $controller_path . '\Hotel\HotelController@checkout')->name('checkout');
+Route::get('/hotel/cancelCheckIn/{htO_id}/{ht_id}', $controller_path . '\Hotel\HotelController@cancelCheckIn')->name('cancelCheckIn');
 
 // User Interface
 Route::get('/ui/accordion', $controller_path . '\user_interface\Accordion@index')->name('ui-accordion');

@@ -1,14 +1,27 @@
 {{-- ? --}}
-<div class="tab-pane fade" id="navs-pills-justified-home" role="tabpanel">
-    <p>
-        Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps powder.
-        Bear
-        claw
-        candy topping.
-    </p>
-    <p class="mb-0">
-        Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon jelly-o
-        jelly-o ice
-        cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow jujubes sweet.
-    </p>
+<div class="tab-pane fade" id="booking-history" role="tabpanel">
+    <div class="col-lg-12">
+        @foreach ($histories as $history)
+        <div class="card bg-transparent border mb-2
+                @if ($history->htO_status !== 1)
+                    border-dark
+                @else
+                    border-success
+                @endif">
+            <div class="card-body">
+                <div class="d-flex">
+                    <h5 class="card-title mt-2">Room #{{ $history->htO_roomNum }}</h5>
+                    <p class="ms-auto mt-2">{{ $history->htO_occupant_name }}</p>
+                </div>
+                <p>
+                    @if ($history->htO_status === 1)
+                    <span class="badge bg-label-success text-start">COMPLETED</span>
+                    @else
+                    <span class="badge bg-label-dark text-start">CANCELLED</span>
+                    @endif
+                </p>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>

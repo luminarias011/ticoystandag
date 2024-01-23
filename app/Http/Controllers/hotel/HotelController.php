@@ -19,8 +19,13 @@ class HotelController extends Controller
             ->where('htO_status', 0)
             ->get();
 
+        $histories = DB::table('occupied_room')
+            ->where('htO_active', 1)
+            ->where('htO_status', '!=', 0)
+            ->get();
+
         // session()->flash('success', 'Status Updated.');
-        return view('content.hotel.main', compact('rooms', 'occupied'));
+        return view('content.hotel.main', compact('rooms', 'occupied', 'histories'));
     }
 
     public function addOccupant(Request $request)
@@ -62,13 +67,13 @@ class HotelController extends Controller
         $ht_id = $request->ht_id;
 
 
-        $total_paid = $htO_pay_amount+$htO_paid;
+        $total_paid = $htO_pay_amount + $htO_paid;
         // dd($total_paid, $htO_total_price);
-        
-        if($total_paid > $htO_total_price){
+
+        if ($total_paid > $htO_total_price) {
             session()->flash('error', 'Amount Exceeded!');
             return redirect()->route('hotel');
-        }else{
+        } else {
             DB::table('occupied_room')
                 ->where('htO_id', $htO_id)
                 ->increment('htO_amount_paid', $htO_pay_amount, [
@@ -79,4 +84,55 @@ class HotelController extends Controller
             return redirect()->route('hotel');
         }
     }
+    // ! STATUS:
+    // ? 0: Ongoing
+    // ? 1: Completed
+    // ? 2: Cancelled
+
+    // ! Occupied
+    // ? 0: Not
+    // ? 1: Occupied
+
+    function checkout($htO_id, $ht_id)
+    {
+        DB::table('occupied_room')
+            ->where('htO_id', $htO_id)
+            ->update([
+                'htO_status' => 1,
+                'htO_date_modified' => DB::raw('CURRENT_TIMESTAMP'),
+            ]);
+
+        DB::table('hotel')
+            ->where('ht_id', $ht_id)
+            ->update([
+                'ht_occupied' => 0,
+                'ht_date_modified' => DB::raw('CURRENT_TIMESTAMP')
+            ]);
+
+
+        session()->flash('success', 'Completed!');
+        return redirect()->route('hotel');
+    }
+
+    function cancelCheckIn($htO_id, $ht_id)
+    {
+        DB::table('occupied_room')
+            ->where('htO_id', $htO_id)
+            ->update([
+                'htO_status' => 2,
+                'htO_date_modified' => DB::raw('CURRENT_TIMESTAMP'),
+            ]);
+
+        DB::table('hotel')
+            ->where('ht_id', $ht_id)
+            ->update([
+                'ht_occupied' => 0,
+                'ht_date_modified' => DB::raw('CURRENT_TIMESTAMP')
+            ]);
+
+
+        session()->flash('success', 'Cancelled!');
+        return redirect()->route('hotel');
+    }
+
 }
