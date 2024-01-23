@@ -34,6 +34,9 @@
       @endif
       <div>{{ isset($submenu->name) ? __($submenu->name) : '' }}
       {{-- ! badge HERE --}}
+      {{-- @if (__($menu->name) === 'Hotel Service')
+     
+      @endif --}}
       </div>
     </a>
 

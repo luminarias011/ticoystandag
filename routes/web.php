@@ -49,7 +49,12 @@ Route::get('/menus/desserts', $controller_path . '\Menu\Desserts@index')->name('
 Route::get('/menus/ticoysbar', $controller_path . '\Menu\Ticoysbar@index')->name('menuu-ticoysbar');
 
 // !HOTEL
+// GET
 Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->name('hotel');
+// Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->name('hotel');
+// POST
+Route::post('/hotel/addOccupant', $controller_path . '\Hotel\HotelController@addOccupant')->name('addOccupant');
+Route::post('/hotel/addPayment', $controller_path . '\Hotel\HotelController@addPayment')->name('addPayment');
 
 // User Interface
 Route::get('/ui/accordion', $controller_path . '\user_interface\Accordion@index')->name('ui-accordion');

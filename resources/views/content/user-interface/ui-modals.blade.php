@@ -61,6 +61,9 @@
         </div>
       </div>
 
+      {{-- * --}}
+      {{-- ! --}}
+      {{-- ? --}}
       <!-- Vertically Centered Modal -->
       <div class="col-lg-4 col-md-6">
         <small class="text-light fw-semibold">Vertically centered</small>

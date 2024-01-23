@@ -69,7 +69,9 @@
         <div>{{ isset($menu->name) ? __($menu->name) : '' }}
           {{-- ! Badge --}}
           @if (__($menu->name) === 'Hotel Service')
-          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">4</span>
+          @if (bookedRooms() !== 0)
+          <span class="badge rounded-pill badge-center h-px-10 w-px-10 bg-danger">{{ bookedRooms() }}</span>
+          @endif
           @endif
         </div>
       </a>

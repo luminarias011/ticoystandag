@@ -1,5 +1,5 @@
 {{-- ? --}}
-<div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
+<div class="tab-pane fade" id="navs-pills-justified-home" role="tabpanel">
     <p>
         Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps powder.
         Bear

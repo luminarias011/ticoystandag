@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html class="light-style layout-menu-fixed" data-theme="theme-default" data-assets-path="{{ asset('/assets') . '/' }}" data-base-url="{{url('/')}}" data-framework="laravel" data-template="vertical-menu-laravel-template-free">
@@ -17,7 +19,6 @@
   {{-- <img src="{{ asset('assets/img/favicon/favicon.ico') }}" alt=""> --}}
   <!-- Favicon -->
   
-
   <!-- Include Styles -->
   @include('layouts/sections/styles')
 
@@ -31,9 +32,9 @@
   <!--/ Layout Content -->
 
   {{-- remove while creating package --}}
-  <div class="buy-now">
+  {{-- <div class="buy-now">
     <a href="{{config('variables.productPage')}}" target="_blank" class="btn btn-danger btn-buy-now">Order now on Ticoy's Kan anan</a>
-  </div>
+  </div> --}}
   {{-- remove while creating package end --}}
 
   <!-- Include Scripts -->

@@ -6,7 +6,7 @@ $navbarDetached = ($navbarDetached ?? '');
 
 <!-- Navbar -->
 @if(isset($navbarDetached) && $navbarDetached == 'navbar-detached')
-<nav class="layout-navbar {{$containerNav}} navbar navbar-expand-xl {{$navbarDetached}} align-items-center bg-navbar-theme mt-n2" id="layout-navbar">
+<nav class="layout-navbar {{$containerNav}} navbar navbar-expand-xl {{$navbarDetached}} align-items-center bg-navbar-theme" id="layout-navbar">
   @endif
   @if(isset($navbarDetached) && $navbarDetached == '')
   <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
@@ -28,8 +28,11 @@ $navbarDetached = ($navbarDetached ?? '');
       <!-- ! Not required for layout-without-menu -->
       @if(!isset($navbarHideToggle))
       <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0{{ isset($menuHorizontal) ? ' d-xl-none ' : '' }} {{ isset($contentNavbar) ?' d-xl-none ' : '' }}">
-        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+        <a class="nav-item nav-link px-0 me-xl-4 d-flex" href="javascript:void(0)">
           <i class="bx bx-menu bx-sm"></i>
+          @if (bookedRooms() !== 0)
+          <span class="badge rounded-pill badge-center h-px-10 w-px-10 bg-danger mx-auto">{{ bookedRooms() }}</span>
+          @endif
         </a>
       </div>
       @endif
