@@ -3,7 +3,20 @@
 @section('title', 'Menu - Barbecue')
 
 @section('content')
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Menu /</span> Barbecue</h4>
+<h4 class="py-3 fw-bold mt-n1 mb-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style2 mb-0">
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0);" class="text-muted fw-light">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0);" class="text-muted fw-light">Menu</a>
+            </li>
+            <li class="breadcrumb-item active">Barbeque</li>
+        </ol>
+    </nav>
+</h4>
+{{-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Menu /</span> Barbecue</h4> --}}
 
 <!-- Accordion -->
 <h5 class="mt-4">Chicken barbecue</h5>

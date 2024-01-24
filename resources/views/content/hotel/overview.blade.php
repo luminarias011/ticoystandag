@@ -16,21 +16,77 @@
     }
 </style>
 
-<h4 class="fw-bold py-3 mt-n2">
-    <span class="text-muted fw-light">Hotel / </span>
-    Hotel Sales Overview
+<h4 class="py-3 fw-bold mt-n1 mb-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style2 mb-0">
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0);" class="text-muted fw-light">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0);" class="text-muted fw-light">Hotel</a>
+            </li>
+            <li class="breadcrumb-item active">Hotel Sales Overview</li>
+        </ol>
+    </nav>
 </h4>
-<div class="row">
+
+<h4>Daily (7 Days Preview)</h4>
+<div class="col-md mt-n1">
+    <div class="demo-inline-spacing">
+        <div class="list-group list-group-horizontal-sm text-sm-left">
+            @foreach ($dailyOverview as $index => $dailyOverviewed)
+            <a class="list-group-item list-group-item-action {{ $index === 0 ? ' active' : '' }}" id="home-list-item" data-bs-toggle="list"
+                href="#daily-{{ $dailyOverviewed['dateID'] }}">{{ $dailyOverviewed['date'] }}</a>
+            @endforeach
+        </div>
+        <div class="tab-content px-0 pt-0 pb-5">
+            @foreach ($dailyOverview as $index => $dOverview)
+            <div class="tab-pane fade show {{ $index === 0 ? ' show active' : '' }}" id="daily-{{ $dOverview['dateID'] }}">
+                <p>{{ $dOverview['salesDailyInfo'] }} <strong>₱{{ number_format($dOverview['dailyAmount'],2, '.', ',') }} pesos</strong></p>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<h4>Monthly (12 Month Preview )</h4>
+<div class="col-md mt-n1">
+    <div class="demo-inline-spacing">
+        <div class="list-group list-group-horizontal-sm text-sm-left">
+            @foreach ($monthlyOverview as $index => $monthlyOverviewed)
+            <a class="list-group-item list-group-item-action {{ $index === 0 ? ' active' : '' }}" id="home-list-item"
+                data-bs-toggle="list" href="#monthly-{{ $monthlyOverviewed['monthID'] }}">{{ $monthlyOverviewed['month'] }}</a>
+            @endforeach
+        </div>
+        <div class="tab-content px-0 pt-0 pb-5">
+            @foreach ($monthlyOverview as $index => $mOverview)
+            <div class="tab-pane fade show {{ $index === 0 ? ' show active' : '' }}"
+                id="monthly-{{ $mOverview['monthID'] }}">
+                <p>{{ $mOverview['salesMonthlyInfo'] }} <strong>₱{{ number_format($mOverview['monthlyAmount'],2, '.', ',') }} pesos</strong></p>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+{{-- <div class="row">
     <div class="col-lg-12">
-        <h1>Sales Overview</h1>
+        <h5>Sales Overview</h5>
         <div>
             <h2>Daily Overview</h2>
-            <p>{{ $dailyOverview }}</p>
+            @foreach ($dailyOverview as $dailyOverview)
+            <p>{{ $dailyOverview['dateID'] }}</p>
+            <p>{{ $dailyOverview['date'] }}</p>
+            <p>{{ $dailyOverview['salesDailyInfo'] }}</p>
+            @endforeach
         </div>
 
         <div>
             <h2>Monthly Overview</h2>
-            <p>{{ $monthlyOverview }}</p>
+            @foreach ($monthlyOverview as $monthlyOverview)
+            <p>{{ $monthlyOverview['month'] }}</p>
+            <p>{{ $monthlyOverview['salesMonthlyInfo'] }}</p>
+            @endforeach
         </div>
     </div>
 
@@ -46,7 +102,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- <script>
     const dataFromServer = @json($dataFromDatabase);

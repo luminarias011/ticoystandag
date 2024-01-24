@@ -16,10 +16,25 @@
     }
 </style>
 
-<h4 class="fw-bold py-3 mt-n2">
+<h4 class="py-3 fw-bold mt-n1 mb-4">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-style2 mb-0">
+        <li class="breadcrumb-item">
+            <a href="javascript:void(0);" class="text-muted fw-light">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="javascript:void(0);" class="text-muted fw-light">Hotel</a>
+        </li>
+        <li class="breadcrumb-item active">Hotel Booking</li>
+    </ol>
+</nav>
+</h4>
+
+{{-- <h4 class="fw-bold py-3 mt-n2">
     <span class="text-muted fw-light">Hotel / </span>
     Hotel Booking
-</h4>
+</h4> --}}
+
 <div class="row">
     <div class="col-lg-8 mt-n2 col-md-8 col-sm-7 col-xs-2">
         <div class="nav-align-top mb-4">

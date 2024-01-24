@@ -17,8 +17,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // $schedule->command(GenerateSalesOverview::class)
+        //     ->everyMinute(); // Adjust the time as per your requirement
+        // $schedule->command(GenerateSalesOverview::class)
+        //     ->hourly();
         $schedule->command(GenerateSalesOverview::class)
-            ->everyMinute(); // Adjust the time as per your requirement
+            ->daily()
+            ->at('12:01');
     }
 
     /**

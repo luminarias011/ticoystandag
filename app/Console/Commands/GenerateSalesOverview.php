@@ -26,7 +26,7 @@ class GenerateSalesOverview extends Command
         //     $view->with('monthlyOverview', $monthlyOverview);
         // });
 
-        $this->info('Sales overviews generated successfully.');
+        $this->info('Sales overviews BEEEEPPP.');
     }
 
     protected function generateDailyOverview()
