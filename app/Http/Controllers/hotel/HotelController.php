@@ -53,7 +53,7 @@ class HotelController extends Controller
             ]);
 
         session()->flash('success', 'Room #' . $htO_roomNum . ' Occupied!');
-        return redirect()->route('hotel');
+        return redirect()->route('hotel-book');
         // return view('content.hotel.main', compact('rooms'));
     }
 
@@ -72,7 +72,7 @@ class HotelController extends Controller
 
         if ($total_paid > $htO_total_price) {
             session()->flash('error', 'Amount Exceeded!');
-            return redirect()->route('hotel');
+            return redirect()->route('hotel-book');
         } else {
             DB::table('occupied_room')
                 ->where('htO_id', $htO_id)
@@ -81,7 +81,7 @@ class HotelController extends Controller
                 ]);
 
             session()->flash('success', 'Amount Added!');
-            return redirect()->route('hotel');
+            return redirect()->route('hotel-book');
         }
     }
     // ! STATUS:
@@ -111,7 +111,7 @@ class HotelController extends Controller
 
 
         session()->flash('success', 'Completed!');
-        return redirect()->route('hotel');
+        return redirect()->route('hotel-book');
     }
 
     function cancelCheckIn($htO_id, $ht_id)
@@ -132,7 +132,7 @@ class HotelController extends Controller
 
 
         session()->flash('success', 'Cancelled!');
-        return redirect()->route('hotel');
+        return redirect()->route('hotel-book');
     }
 
 }

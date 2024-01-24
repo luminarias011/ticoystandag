@@ -70,7 +70,7 @@
           {{-- ! Badge --}}
           @if (__($menu->name) === 'Hotel Service')
           @if (bookedRooms() !== 0)
-          <span class="badge rounded-pill badge-center h-px-10 w-px-10 bg-danger">{{ bookedRooms() }}</span>
+          <span class="badge rounded-pill badge-center h-px-10 w-px-10 bg-danger"><span style="padding-top: 0.8px; font-size: 11px">{{ bookedRooms() }}</span></span>
           @endif
           @endif
         </div>
