@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\GenerateSalesOverview;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -16,6 +17,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // $schedule->command(GenerateSalesOverview::class)
+        //     ->everyMinute(); // Adjust the time as per your requirement
+        // $schedule->command(GenerateSalesOverview::class)
+        //     ->hourly();
+        $schedule->command(GenerateSalesOverview::class)
+            ->daily()
+            ->at('12:01');
     }
 
     /**

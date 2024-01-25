@@ -34,9 +34,11 @@
       @endif
       <div>{{ isset($submenu->name) ? __($submenu->name) : '' }}
       {{-- ! badge HERE --}}
-      {{-- @if (__($menu->name) === 'Hotel Service')
-     
-      @endif --}}
+      @if (__($submenu->name) === 'Room Booking')
+      @if (bookedRooms() !== 0)
+      <span class="badge rounded-pill badge-center h-px-10 w-px-10 bg-danger small"><span style="padding-top: 1px; padding-right: 0.7px; font-size: 11px">{{ bookedRooms() }}</span></span>
+      @endif
+      @endif
       </div>
     </a>
 

@@ -53,26 +53,28 @@ class HotelController extends Controller
             ]);
 
         session()->flash('success', 'Room #' . $htO_roomNum . ' Occupied!');
-        return redirect()->route('hotel');
+        return redirect()->route('hotel-book');
         // return view('content.hotel.main', compact('rooms'));
     }
 
     function addPayment(Request $request)
     {
-        $htO_pay_amount = $request->htO_pay_amount;
-        $htO_paid = $request->htO_paid;
+        $htO_occupant_name = $request->htO_occupant_name;
         $htO_total_price = $request->htO_total_price;
+        $htO_pay_amount = $request->htO_pay_amount;
         $htO_roomNum = $request->htO_roomNum;
+        $htO_paid = $request->htO_paid;
+        $htO_date = $request->htO_date;
         $htO_id = $request->htO_id;
         $ht_id = $request->ht_id;
-
+        // dd($htO_occupant_name);
 
         $total_paid = $htO_pay_amount + $htO_paid;
         // dd($total_paid, $htO_total_price);
 
         if ($total_paid > $htO_total_price) {
             session()->flash('error', 'Amount Exceeded!');
-            return redirect()->route('hotel');
+            return redirect()->route('hotel-book');
         } else {
             DB::table('occupied_room')
                 ->where('htO_id', $htO_id)
@@ -80,10 +82,23 @@ class HotelController extends Controller
                     'htO_date_paid' => DB::raw('CURRENT_TIMESTAMP'),
                 ]);
 
+            // ? PAYMENT LOGs
+
+            DB::table('log_hotel_payments')
+                ->insert([
+                    'log_htO_id' => $htO_id,
+                    'log_htO_roomNum' => $htO_roomNum,
+                    'log_htO_date' => $htO_date,
+                    'log_htO_occupant_name' => $htO_occupant_name,
+                    'log_payment_amount' => $htO_pay_amount,
+                    'log_payment_date' => DB::raw('CURRENT_TIMESTAMP'),
+                ]);
+
             session()->flash('success', 'Amount Added!');
-            return redirect()->route('hotel');
+            return redirect()->route('hotel-book');
         }
     }
+
     // ! STATUS:
     // ? 0: Ongoing
     // ? 1: Completed
@@ -109,9 +124,8 @@ class HotelController extends Controller
                 'ht_date_modified' => DB::raw('CURRENT_TIMESTAMP')
             ]);
 
-
         session()->flash('success', 'Completed!');
-        return redirect()->route('hotel');
+        return redirect()->route('hotel-book');
     }
 
     function cancelCheckIn($htO_id, $ht_id)
@@ -132,7 +146,7 @@ class HotelController extends Controller
 
 
         session()->flash('success', 'Cancelled!');
-        return redirect()->route('hotel');
+        return redirect()->route('hotel-book');
     }
 
 }

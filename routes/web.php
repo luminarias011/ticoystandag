@@ -49,8 +49,10 @@ Route::get('/menus/desserts', $controller_path . '\Menu\Desserts@index')->name('
 Route::get('/menus/ticoysbar', $controller_path . '\Menu\Ticoysbar@index')->name('menuu-ticoysbar');
 
 // !HOTEL
+Route::get('/hotel/overview', $controller_path . '\OverviewController@show_hotel_overview')->name('sales-overview');
+// Route::get('/hotel/overview', $controller_path . '\OverviewController@show_hotel')->name('sales-overview');
 // GET
-Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->name('hotel');
+Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->name('hotel-book');
 // Route::get('/hotel/main', $controller_path . '\Hotel\HotelController@main')->name('hotel');
 // POST
 Route::post('/hotel/addOccupant', $controller_path . '\Hotel\HotelController@addOccupant')->name('addOccupant');

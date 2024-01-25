@@ -56,10 +56,22 @@
       "menuHeader": "Hotel"
     },
     {
-      "url": "/hotel/main",
+      "url": "",
       "name": "Hotel Service",
       "icon": "menu-icon tf-icons bx bx-hotel",
-      "slug": "hotel"
+      "slug": "hotel",
+      "submenu": [
+        {
+          "url": "/hotel/main",
+          "name": "Room Booking",
+          "slug": "hotel-book"
+        },
+        {
+          "url": "/hotel/overview",
+          "name": "Manage",
+          "slug": "hotel-overview"
+        }
+      ]
     },
     {
       "menuHeader": "Cakes and pastries"
