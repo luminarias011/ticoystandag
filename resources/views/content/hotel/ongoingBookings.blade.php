@@ -81,6 +81,7 @@
                             </div>
                             <input type="text" id="" name="htO_total_price" value="{{ $occupied->htO_total_price }}"
                                 hidden>
+                            <input type="text" id="" name="htO_date" value="{{ $occupied->htO_date }}" hidden>
                             <input type="text" id="" name="htO_paid" value="{{ $occupied->htO_amount_paid }}" hidden>
                             <input type="text" id="" name="htO_roomNum" value="{{ $occupied->htO_roomNum }}" hidden>
                             <input type="text" id="" name="ht_id" value="{{ $occupied->htO_ht_id }}" hidden>

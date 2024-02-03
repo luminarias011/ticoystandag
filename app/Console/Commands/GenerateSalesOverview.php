@@ -32,9 +32,9 @@ class GenerateSalesOverview extends Command
     protected function generateDailyOverview()
     {
         $today = Carbon::today();
-        $salesAmount = DB::table('occupied_room')
-            ->whereDate('htO_date_paid', $today)
-            ->sum('htO_amount_paid');
+        $salesAmount = DB::table('log_hotel_payments')
+            ->whereDate('log_payment_date', $today)
+            ->sum('log_payment_amount');
 
         // Add your logic for daily overview calculations
 
@@ -45,9 +45,9 @@ class GenerateSalesOverview extends Command
     protected function generateMonthlyOverview()
     {
         $thisMonth = Carbon::now()->startOfMonth();
-        $salesMonthAmount = DB::table('occupied_room')
-            ->whereMonth('htO_date_paid', $thisMonth->month)
-            ->sum('htO_amount_paid');
+        $salesMonthAmount = DB::table('log_hotel_payments')
+            ->whereMonth('log_payment_date', $thisMonth->month)
+            ->sum('log_payment_amount');
 
         // Add your logic for monthly overview calculations
 
