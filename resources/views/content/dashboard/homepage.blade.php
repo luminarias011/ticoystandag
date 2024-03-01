@@ -136,9 +136,9 @@
               type="video/{{ pathinfo($post->pst_file, PATHINFO_EXTENSION) }}">
             Your browser does not support the video tag.
           </video>
-          @if(in_array(strtolower(pathinfo($post->pst_file, PATHINFO_EXTENSION)), ['mkv']))
-          <i class="text-danger ms-3">The video file type is not supported!</i>
-          @endif
+            @if(in_array(strtolower(pathinfo($post->pst_file, PATHINFO_EXTENSION)), ['mkv']))
+            <i class="text-danger ms-3">The video file type is not supported!</i>
+            @endif
           @else
           <img class="img-fluid clickable-image content-hover" src="{{ asset('contents/' . $post->pst_file) }}"
             alt="Uploaded File {{ $post->pst_title }}" />
