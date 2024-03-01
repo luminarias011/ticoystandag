@@ -91,7 +91,7 @@ class SalesOverviewServiceProvider extends ServiceProvider
 
             Log::info("Daily Sales Overview for {$date->format('Y-m-d')}: {$salesAmount} pesos");
         }
-        
+
         return $overviews;
     }
 
@@ -128,9 +128,9 @@ class SalesOverviewServiceProvider extends ServiceProvider
 
             Log::info("Monthly Sales Overview for {$date->format('F Y')}: {$salesMonthAmount} pesos");
         }
-       
+
         return $overviews;
     }
     //  ? aosjdnaiufbajkvcn ihb 
-    
+
 }

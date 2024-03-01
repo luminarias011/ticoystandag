@@ -13,14 +13,10 @@
                         @if ($occupied->htO_amount_paid === $occupied->htO_total_price)
                         <span class="badge bg-label-success text-start">Fully Paid</span>
                         @else
-                        <span class="badge bg-label-warning text-start">Not Fully Paid</span>
+                        <span class="badge bg-label-warning text-start">Not Paid</span>
                         @endif
                     </p>
-                    {{-- <div class="d-flex">
-                        <p>Total amount: ₱{{ number_format($occupied->htO_total_price, 2, '.', ',') }}</p>
-                        <p class="ms-auto"> Amount paid: ₱{{ number_format($occupied->htO_amount_paid, 2, '.', ',') }}
-                        </p>
-                    </div> --}}
+                    
                     <p>Total amount: ₱{{ number_format($occupied->htO_total_price, 2, '.', ',') }}</p>
                     <p class="ms-auto"> Amount paid: <span
                             class="@if($occupied->htO_amount_paid !== $occupied->htO_total_price) text-warning @else text-success @endif">

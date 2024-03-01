@@ -40,6 +40,9 @@ Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\F
 // cards
 Route::get('/cards/basic', $controller_path . '\cards\CardBasic@index')->name('cards-basic');
 
+// !HOMEPAGE
+Route::post('/menus/all', $controller_path . '\dashboard\Homepage@addPost')->name('post-content');
+
 // !Menus
 Route::get('/menus/all', $controller_path . '\Menu\All@index')->name('menuu-all');
 Route::get('/menus/barbecue', $controller_path . '\Menu\Barbecue@index')->name('menuu-barbecue');
