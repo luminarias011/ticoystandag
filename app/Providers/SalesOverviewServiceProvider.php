@@ -76,9 +76,9 @@ class SalesOverviewServiceProvider extends ServiceProvider
         // }
         for ($i = 0; $i < 7; $i++) {
             $date = Carbon::today()->subDays($i);
-            $salesAmount = DB::table('occupied_room')
-                ->whereDate('htO_date_paid', $date)
-                ->sum('htO_amount_paid');
+            $salesAmount = DB::table('log_hotel_payments')
+                ->whereDate('log_payment_date', $date)
+                ->sum('log_payment_amount');
 
             $overview = [
                 'dateID' => $date->format('m-d-y'),
@@ -91,7 +91,7 @@ class SalesOverviewServiceProvider extends ServiceProvider
 
             Log::info("Daily Sales Overview for {$date->format('Y-m-d')}: {$salesAmount} pesos");
         }
-        
+
         return $overviews;
     }
 
@@ -113,9 +113,9 @@ class SalesOverviewServiceProvider extends ServiceProvider
 
         for ($i = 0; $i < 12; $i++) {
             $date = Carbon::now()->subMonths($i)->startOfMonth();
-            $salesMonthAmount = DB::table('occupied_room')
-                ->whereMonth('htO_date_paid', $date->month)
-                ->sum('htO_amount_paid');
+            $salesMonthAmount = DB::table('log_hotel_payments')
+                ->whereMonth('log_payment_date', $date->month)
+                ->sum('log_payment_amount');
 
             $overview = [
                 'monthID' => $date->format('F-m'),
@@ -128,9 +128,9 @@ class SalesOverviewServiceProvider extends ServiceProvider
 
             Log::info("Monthly Sales Overview for {$date->format('F Y')}: {$salesMonthAmount} pesos");
         }
-       
+
         return $overviews;
     }
     //  ? aosjdnaiufbajkvcn ihb 
-    
+
 }

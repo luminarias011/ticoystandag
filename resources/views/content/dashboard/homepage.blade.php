@@ -3,15 +3,15 @@
 @section('title', 'Home Page')
 
 @section('vendor-style')
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
 @endsection
 
 @section('vendor-script')
-<script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+<script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 @endsection
 
 @section('content')
@@ -24,61 +24,158 @@
   .right {
     width: 30%;
   }
+
+  .custom-card {
+    min-height: 200px;
+    /* Set your minimum height */
+    max-height: 400px;
+    /* Set your maximum height */
+    min-width: 150px;
+    /* Set your minimum width */
+    max-width: 300px;
+    /* Set your maximum width */
+  }
+
+  .content-hover:hover {
+    cursor: pointer;
+  }
 </style>
-Contents here lol
 
 <div class="row">
-  <div class="left">
-    {{-- ? --}}
-    {{-- <div class="col-lg-12 mb-3 order-0">
-      <div class="card">
-        <div class="d-flex align-items-end row">
-          <div class="col-sm-7">
-            <div class="card-body">
-              <h5 class="card-title text-primary">Congratulations Marco! 🎉</h5>
-              <p class="mb-4">You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
-                your profile.</p>
-    
-              <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+  <div class="col-md-12 mb-3 ms-5">
+    <button class="btn btn-md btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#largeModal">Post
+      Content</button>
+  </div>
+</div>
+
+<div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel3">POST CONTENTS</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="{{ route('post-content') }}" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div id="defaultFormControlHelp" class="form-text mb-2"><i>Required fields with
+              <span style="color: red">*</span></i>.
+          </div>
+          @csrf
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameLarge" class="form-label">TITLE <i style="color: red">*</i></label>
+              <div class="input-group input-group-merge">
+                <span id="basic-book-title" class="input-group-text"><i class="bx bx-book"></i></span>
+                <input type="text" id="nameLarge" class="form-control" placeholder="Enter Title" name="post_title"
+                  aria-describedby="basic-book-title" required>
+              </div>
             </div>
           </div>
-          <div class="col-sm-5 text-center text-sm-left">
-            <div class="card-body pb-0 px-0 px-md-4">
-              <img src="{{asset('assets/img/illustrations/man-with-laptop-light.png')}}" height="140" alt="View Badge User"
-                data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                data-app-light-img="illustrations/man-with-laptop-light.png">
+
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameLarge" class="form-label">DESCRIPTION <i style="color: red">*</i></label>
+              <div class="input-group input-group-merge">
+                <span id="basic-book-summary" class="input-group-text"><i class="bx bx-note"></i></span>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  placeholder="Enter Book Summary/Synopsis" aria-describedby="basic-book-summary"
+                  name="post_description"></textarea>
+              </div>
             </div>
+          </div>
+
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameLarge" class="form-label">DATE <i style="color: red">*</i></label>
+              <div class="input-group input-group-merge">
+                <span id="basic-book-title" class="input-group-text"><i class="bx bx-book"></i></span>
+                <input type="date" id="nameLarge" class="form-control" placeholder="Date of Event/Occasion" name="date"
+                  aria-describedby="basic-book-title" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mb-3">
+              <div class="form-group">
+                <label for="formFile" class="form-label">CHOOSE FILE (1)
+                  <i style="color: red">*</i></label>
+                <div class="input-group input-group-merge">
+                  <span id="basic-book-cover" class="input-group-text"><i class="bx bx-image-add"></i></span>
+                  <input class="form-control" type="file" id="formFile" aria-describedby="basic-book-cover"
+                    name="post_file">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 order-0">
+    @foreach ($posts as $post)
+    <div class="row mb-3">
+      <div class="col-md-10 col-lg-12 ms-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ $post->pst_title }}</h5>
+            <h6 class="card-subtitle text-muted">{{ $post->pst_description }}</h6>
+          </div>
+          @if(in_array(strtolower(pathinfo($post->pst_file, PATHINFO_EXTENSION)), ['mp4', 'avi', 'mov', 'mkv']))
+          <video class="img-fluid clickable-video content-hover" controls autoplay loop>
+            <source src="{{ asset('contents/' . $post->pst_file) }}"
+              type="video/{{ pathinfo($post->pst_file, PATHINFO_EXTENSION) }}">
+            Your browser does not support the video tag.
+          </video>
+          @if(in_array(strtolower(pathinfo($post->pst_file, PATHINFO_EXTENSION)), ['mkv']))
+          <i class="text-danger ms-3">The video file type is not supported!</i>
+          @endif
+          @else
+          <img class="img-fluid clickable-image content-hover" src="{{ asset('contents/' . $post->pst_file) }}"
+            alt="Uploaded File {{ $post->pst_title }}" />
+          @endif
+          <div class="card-body">
+            <a href="javascript:void(0);" class="card-link">Card link</a>
+            <a href="javascript:void(0);" class="card-link">Another link</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-12 mb-3 order-0">
-      <div class="card">
-        <div class="d-flex align-items-end row">
-          <div class="col-sm-7">
-            <div class="card-body">
-              <h5 class="card-title text-primary">Congratulations Marco! 🎉</h5>
-              <p class="mb-4">You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
-                your profile.</p>
-    
-              <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-            </div>
-          </div>
-          <div class="col-sm-5 text-center text-sm-left">
-            <div class="card-body pb-0 px-0 px-md-4">
-              <img src="{{asset('assets/img/illustrations/man-with-laptop-light.png')}}" height="140" alt="View Badge User"
-                data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                data-app-light-img="illustrations/man-with-laptop-light.png">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-  </div>
-  <div class="right">
-    content
+    @endforeach
   </div>
 </div>
+
+{{-- <div class="card mb-3">
+  <div class="d-flex align-items-end row">
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Congratulations Marco! 🎉
+        </h5>
+        <p class="mb-4">You have done <span class="fw-bold">72%</span>
+          more sales today. Check your new badge in
+          your profile.</p>
+
+        <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+      </div>
+    </div>
+    <div class="col-sm-5 text-center text-sm-left">
+      <div class="card-body pb-0 px-0 px-md-4">
+        <img src="{{ asset('assets/img/illustrations/man-with-laptop-light.png') }}" height="140" alt="View Badge User"
+          data-app-dark-img="illustrations/man-with-laptop-dark.png"
+          data-app-light-img="illustrations/man-with-laptop-light.png">
+      </div>
+    </div>
+  </div>
+</div> --}}
 
 {{-- <div class="row">
   <div class="col-lg-8 mb-4 order-0">
@@ -87,15 +184,17 @@ Contents here lol
         <div class="col-sm-7">
           <div class="card-body">
             <h5 class="card-title text-primary">Congratulations Marco! 🎉</h5>
-            <p class="mb-4">You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
+            <p class="mb-4">You have done <span class="fw-bold">72%</span> more
+              sales today. Check your new badge in
               your profile.</p>
 
-            <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+            <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
+              Badges</a>
           </div>
         </div>
         <div class="col-sm-5 text-center text-sm-left">
           <div class="card-body pb-0 px-0 px-md-4">
-            <img src="{{asset('assets/img/illustrations/man-with-laptop-light.png')}}" height="140"
+            <img src="{{ asset('assets/img/illustrations/man-with-laptop-light.png') }}" height="140"
               alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
               data-app-light-img="illustrations/man-with-laptop-light.png">
           </div>
@@ -110,7 +209,8 @@ Contents here lol
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/chart-success.png')}}" alt="chart success" class="rounded">
+                <img src="{{ asset('assets/img/icons/unicons/chart-success.png') }}" alt="chart success"
+                  class="rounded">
               </div>
               <div class="dropdown">
                 <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -118,7 +218,8 @@ Contents here lol
                   <i class="bx bx-dots-vertical-rounded"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                  <a class="dropdown-item" href="javascript:void(0);">View
+                    More</a>
                   <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                 </div>
               </div>
@@ -134,7 +235,7 @@ Contents here lol
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/wallet-info.png')}}" alt="Credit Card" class="rounded">
+                <img src="{{ asset('assets/img/icons/unicons/wallet-info.png') }}" alt="Credit Card" class="rounded">
               </div>
               <div class="dropdown">
                 <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -142,7 +243,8 @@ Contents here lol
                   <i class="bx bx-dots-vertical-rounded"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                  <a class="dropdown-item" href="javascript:void(0);">View
+                    More</a>
                   <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                 </div>
               </div>
@@ -214,7 +316,7 @@ Contents here lol
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/paypal.png')}}" alt="Credit Card" class="rounded">
+                <img src="{{ asset('assets/img/icons/unicons/paypal.png') }}" alt="Credit Card" class="rounded">
               </div>
               <div class="dropdown">
                 <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -222,7 +324,8 @@ Contents here lol
                   <i class="bx bx-dots-vertical-rounded"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                  <a class="dropdown-item" href="javascript:void(0);">View
+                    More</a>
                   <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                 </div>
               </div>
@@ -238,7 +341,7 @@ Contents here lol
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/cc-primary.png')}}" alt="Credit Card" class="rounded">
+                <img src="{{ asset('assets/img/icons/unicons/cc-primary.png') }}" alt="Credit Card" class="rounded">
               </div>
               <div class="dropdown">
                 <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -246,7 +349,8 @@ Contents here lol
                   <i class="bx bx-dots-vertical-rounded"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                  <a class="dropdown-item" href="javascript:void(0);">View
+                    More</a>
                   <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                 </div>
               </div>
@@ -258,18 +362,21 @@ Contents here lol
         </div>
       </div>
       <!-- </div>
-    <div class="row"> -->
+                                                                                      <div class="row"> -->
       <div class="col-12 mb-4">
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
               <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                 <div class="card-title">
-                  <h5 class="text-nowrap mb-2">Profile Report</h5>
-                  <span class="badge bg-label-warning rounded-pill">Year 2021</span>
+                  <h5 class="text-nowrap mb-2">Profile Report
+                  </h5>
+                  <span class="badge bg-label-warning rounded-pill">Year
+                    2021</span>
                 </div>
                 <div class="mt-sm-auto">
-                  <small class="text-success text-nowrap fw-semibold"><i class='bx bx-chevron-up'></i> 68.2%</small>
+                  <small class="text-success text-nowrap fw-semibold"><i class='bx bx-chevron-up'></i>
+                    68.2%</small>
                   <h3 class="mb-0">$84,686k</h3>
                 </div>
               </div>
@@ -280,9 +387,9 @@ Contents here lol
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
-<div class="row">
+{{-- <div class="row">
   <!-- Order Statistics -->
   <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
     <div class="card h-100">
@@ -397,7 +504,7 @@ Contents here lol
           <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
             <div class="d-flex p-4 pt-3">
               <div class="avatar flex-shrink-0 me-3">
-                <img src="{{asset('assets/img/icons/unicons/wallet.png')}}" alt="User">
+                <img src="{{ asset('assets/img/icons/unicons/wallet.png') }}" alt="User">
               </div>
               <div>
                 <small class="text-muted d-block">Total Balance</small>
@@ -417,7 +524,8 @@ Contents here lol
               </div>
               <div>
                 <p class="mb-n1 mt-1">Expenses This Week</p>
-                <small class="text-muted">$39 less than last week</small>
+                <small class="text-muted">$39 less than last
+                  week</small>
               </div>
             </div>
           </div>
@@ -448,7 +556,7 @@ Contents here lol
         <ul class="p-0 m-0">
           <li class="d-flex mb-4 pb-1">
             <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/img/icons/unicons/paypal.png')}}" alt="User" class="rounded">
+              <img src="{{ asset('assets/img/icons/unicons/paypal.png') }}" alt="User" class="rounded">
             </div>
             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
               <div class="me-2">
@@ -462,7 +570,7 @@ Contents here lol
           </li>
           <li class="d-flex mb-4 pb-1">
             <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/img/icons/unicons/wallet.png')}}" alt="User" class="rounded">
+              <img src="{{ asset('assets/img/icons/unicons/wallet.png') }}" alt="User" class="rounded">
             </div>
             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
               <div class="me-2">
@@ -476,7 +584,7 @@ Contents here lol
           </li>
           <li class="d-flex mb-4 pb-1">
             <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/img/icons/unicons/chart.png')}}" alt="User" class="rounded">
+              <img src="{{ asset('assets/img/icons/unicons/chart.png') }}" alt="User" class="rounded">
             </div>
             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
               <div class="me-2">
@@ -490,11 +598,12 @@ Contents here lol
           </li>
           <li class="d-flex mb-4 pb-1">
             <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/img/icons/unicons/cc-success.png')}}" alt="User" class="rounded">
+              <img src="{{ asset('assets/img/icons/unicons/cc-success.png') }}" alt="User" class="rounded">
             </div>
             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
               <div class="me-2">
-                <small class="text-muted d-block mb-1">Credit Card</small>
+                <small class="text-muted d-block mb-1">Credit
+                  Card</small>
                 <h6 class="mb-0">Ordered Food</h6>
               </div>
               <div class="user-progress d-flex align-items-center gap-1">
@@ -504,7 +613,7 @@ Contents here lol
           </li>
           <li class="d-flex mb-4 pb-1">
             <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/img/icons/unicons/wallet.png')}}" alt="User" class="rounded">
+              <img src="{{ asset('assets/img/icons/unicons/wallet.png') }}" alt="User" class="rounded">
             </div>
             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
               <div class="me-2">
@@ -518,7 +627,7 @@ Contents here lol
           </li>
           <li class="d-flex">
             <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/img/icons/unicons/cc-warning.png')}}" alt="User" class="rounded">
+              <img src="{{ asset('assets/img/icons/unicons/cc-warning.png') }}" alt="User" class="rounded">
             </div>
             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
               <div class="me-2">
@@ -538,8 +647,45 @@ Contents here lol
 </div> --}}
 
 <script>
-  const dataFromServer = @json($dataFromDatabase);
-        // Call a function in your script to handle the data
-        handleDataFromServer(dataFromServer);
+    document.querySelectorAll('.clickable-image').forEach(item => {
+        item.addEventListener('dblclick', function() {
+            if (this.requestFullscreen) {
+                this.requestFullscreen();
+            } else if (this.mozRequestFullScreen) { /* Firefox */
+                this.mozRequestFullScreen();
+            } else if (this.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                this.webkitRequestFullscreen();
+            } else if (this.msRequestFullscreen) { /* IE/Edge */
+                this.msRequestFullscreen();
+            }
+        });
+    });
+
+    document.querySelectorAll('.clickable-video').forEach(item => {
+        item.addEventListener('dblclick', function() {
+            if (!document.fullscreenElement) {
+                if (this.requestFullscreen) {
+                    this.requestFullscreen();
+                } else if (this.mozRequestFullScreen) {
+                    this.mozRequestFullScreen();
+                } else if (this.webkitRequestFullscreen) {
+                    this.webkitRequestFullscreen();
+                } else if (this.msRequestFullscreen) {
+                    this.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        });
+    });
+
 </script>
 @endsection

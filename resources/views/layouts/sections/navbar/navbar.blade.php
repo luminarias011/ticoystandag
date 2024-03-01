@@ -50,11 +50,11 @@ $navbarDetached = ($navbarDetached ?? '');
 
           <!-- Place this tag where you want the button to render. -->
           <li class="nav-item lh-1 me-3">
-            <a class="github-button" href="https://github.com/themeselection/sneat-html-laravel-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-laravel-admin-template-free on GitHub">Star</a>
+            <a class="github-button" href="https://www.facebook.com/profile.php?id=61550712278986" data-icon="octicon-star">Star</a>
           </li>
 
-          <!-- User -->
-          <li class="nav-item navbar-dropdown dropdown-user dropdown">
+          {{--!  <!-- User --> --}}
+          {{-- <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
                 <img src="{{ asset('assets/img/avatars/5.png') }}" alt class="w-px-40 h-auto rounded-circle">
@@ -110,8 +110,8 @@ $navbarDetached = ($navbarDetached ?? '');
                 </a>
               </li>
             </ul>
-          </li>
-          <!--/ User -->
+          </li> --}}
+          {{--!  <!--/ User --> --}}
         </ul>
       </div>
 

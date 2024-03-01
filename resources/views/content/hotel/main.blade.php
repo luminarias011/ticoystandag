@@ -17,17 +17,17 @@
 </style>
 
 <h4 class="py-3 fw-bold mt-n1 mb-4">
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb breadcrumb-style2 mb-0">
-        <li class="breadcrumb-item">
-            <a href="javascript:void(0);" class="text-muted fw-light">Home</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="javascript:void(0);" class="text-muted fw-light">Hotel</a>
-        </li>
-        <li class="breadcrumb-item active">Hotel Booking</li>
-    </ol>
-</nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style2 mb-0">
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0);" class="text-muted fw-light">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0);" class="text-muted fw-light">Hotel</a>
+            </li>
+            <li class="breadcrumb-item active">Hotel Booking</li>
+        </ol>
+    </nav>
 </h4>
 
 {{-- <h4 class="fw-bold py-3 mt-n2">
@@ -58,8 +58,8 @@
                 </li>
                 <li class="nav-item">
                     <button type="button" class="nav-link btn-sm" role="tab" data-bs-toggle="tab"
-                        data-bs-target="#booking-history" aria-controls="booking-history"
-                        aria-selected="false"><i class="tf-icons bx bx-history mt-n1"></i> History
+                        data-bs-target="#booking-history" aria-controls="booking-history" aria-selected="false"><i
+                            class="tf-icons bx bx-history mt-n1"></i> History
                     </button>
                 </li>
             </ul>
